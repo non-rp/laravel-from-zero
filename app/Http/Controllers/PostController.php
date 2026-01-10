@@ -95,4 +95,47 @@ class PostController extends Controller
 
         dd('deleted');
     }
+
+    public function firstOrCreate(): void
+    {
+        // Return first or create new
+        $newPost = [
+            'title' => 'My NEW Post',
+            'content' => 'This is my NEW post content',
+            'image' => 'image.jpg',
+            'likes' => 10,
+            'is_published' => true,
+        ];
+
+        $post = Post::firstOrCreate(
+            [
+                'title' => 'My NEW Post',
+            ],
+            $newPost
+        );
+        dump($post);
+        dd('created');
+    }
+
+    public function updateOrCreate(): void
+    {
+        // if exists update else create
+        // Return first or create new
+        $newPost = [
+            'title' => 'My Second NEW Post',
+            'content' => 'This is my Second NEW post content',
+            'image' => 'image.jpg',
+            'likes' => 10,
+            'is_published' => true,
+        ];
+
+        $post = Post::updateOrCreate(
+            [
+                'title' => 'My Second NEW Post',
+            ],
+            $newPost
+        );
+        dump($post->title);
+        dd('created');
+    }
 }
