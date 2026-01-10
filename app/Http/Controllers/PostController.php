@@ -60,4 +60,39 @@ class PostController extends Controller
         );
         dd('updated');
     }
+
+    public function delete(): void
+    {
+//        Delete all with n+1 query not recomended
+//        $posts = Post::all();
+//        foreach ($posts as $item) {
+//            $item->delete();
+//        }
+
+//          Eloquent query builder
+        Post::query()->delete();
+//        Post::where('is_published', 0)->delete();
+
+//        Low level delete
+//        DB::table('posts')->delete();
+//        DB::table('posts')
+//            ->where('status', 'draft')
+//            ->delete();
+
+//        Chunk deletes
+//        $chunk = Post::chunkById(100);
+//        foreach ($chunk as $post) {
+//            $post->delete();
+//        }
+
+//        Delete one
+//        $post = Post::find(2);
+//        $post->delete();
+
+//        Restore
+//        $post = Post::withTrashed()->find(2);
+//        $post->restore();
+
+        dd('deleted');
+    }
 }
