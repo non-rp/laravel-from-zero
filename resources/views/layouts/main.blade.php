@@ -10,7 +10,7 @@
         <title>Document</title>
     </head>
     <body class="container bg-body-secondary">
-        <header>
+        <header class="mb-4">
             <div>
                 <nav class="navbar navbar-expand-lg bg-body-tertiary">
                     <div class="container-fluid">
