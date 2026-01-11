@@ -11,40 +11,23 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return view('posts', compact('posts'));
-
+        return view('post.index', compact('posts'));
     }
 
     public function create() {
-        $postArr = [
-            [
-                'title' => 'My First Post',
-                'content' => 'This is my first post content',
-                'image' => 'image.jpg',
-                'likes' => 10,
-                'is_published' => true,
-            ],
-            [
-                'title' => 'My Second Post',
-                'content' => 'This is my second post content',
-                'image' => 'image.jpg',
-                'likes' => 20,
-                'is_published' => true,
-            ],
-            [
-                'title' => 'My Third Post',
-                'content' => 'This is my third post content',
-                'image' => 'image.jpg',
-                'likes' => 30,
-                'is_published' => false,
-            ],
-        ];
+                return view('post.create');
+    }
 
-        foreach ($postArr as $post) {
-            Post::create($post);
-        }
+    public function store()
+    {
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'image' => 'string',
+        ]);
 
-        dd('created');
+        Post::create($data);
+        return redirect()->route('posts.index');
     }
 
     public function update()
@@ -98,46 +81,4 @@ class PostController extends Controller
         dd('deleted');
     }
 
-    public function firstOrCreate(): void
-    {
-        // Return first or create new
-        $newPost = [
-            'title' => 'My NEW Post',
-            'content' => 'This is my NEW post content',
-            'image' => 'image.jpg',
-            'likes' => 10,
-            'is_published' => true,
-        ];
-
-        $post = Post::firstOrCreate(
-            [
-                'title' => 'My NEW Post',
-            ],
-            $newPost
-        );
-        dump($post);
-        dd('created');
-    }
-
-    public function updateOrCreate(): void
-    {
-        // if exists update else create
-        // Return first or create new
-        $newPost = [
-            'title' => 'My Second NEW Post',
-            'content' => 'This is my Second NEW post content',
-            'image' => 'image.jpg',
-            'likes' => 10,
-            'is_published' => true,
-        ];
-
-        $post = Post::updateOrCreate(
-            [
-                'title' => 'My Second NEW Post',
-            ],
-            $newPost
-        );
-        dump($post->title);
-        dd('created');
-    }
 }
