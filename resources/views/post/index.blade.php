@@ -21,6 +21,7 @@
                             <h5 class="card-title">{{$post->title}}</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">Likes: {{$post->likes}}</h6>
                             <p class="card-text">{{$post->content}}</p>
+                            <p class="card-text">Category: {{$post->category->title}}</p>
                             <a href="{{route('posts.show', $post->id)}}" class="btn btn-primary">Show post</a>
                         </div>
                     </div>
