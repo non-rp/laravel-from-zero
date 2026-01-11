@@ -9,16 +9,28 @@
 
     <title>Document</title>
 </head>
-<body>
+<body class="container">
 <header>
     <div>
-        <nav>
-            <ul>
-                <li><a href="{{route('main.index')}}">Home</a></li>
-                <li><a href="{{route('posts.index')}}">Posts</a></li>
-                <li><a href="{{route('about.index')}}">About</a></li>
-                <li><a href="{{route('contacts.index')}}">Contact</a></li>
-            </ul>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{{route('main.index')}}" class="nav-link active" aria-current="page">Main</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('posts.index')}}">Posts</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('about.index')}}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('contacts.index')}}">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
     </div>
 </header>
