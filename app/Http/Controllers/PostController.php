@@ -57,7 +57,7 @@ class PostController extends Controller
 
         return redirect()
             ->route('posts.index')
-            ->with('post_destroy', 'Post deleted successfully.');
+            ->with('success', 'Post deleted successfully.');
     }
 
 }

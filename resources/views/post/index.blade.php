@@ -1,12 +1,17 @@
 @extends('layouts.main')
 @section('content')
     <div class="container">
-        @if(@session('post_destroy'))
-            <div class="alert alert-success">
-                {{session('post_destroy')}}
-            </div>
-        @endif
-        <a href="{{route('posts.create')}}" class="btn btn-primary mb-3 mt-3">Create New Post</a>
+
+        @foreach (['success', 'danger', 'warning', 'info'] as $type)
+            @if (session($type))
+                <div class="alert alert-{{ $type }} alert-dismissible fade show" role="alert">
+                    {{ session($type) }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+        @endforeach
+
+            <a href="{{route('posts.create')}}" class="btn btn-primary mb-3 mt-3">Create New Post</a>
         <div class="d-grid align-items-center gap-3" style="grid-template-columns: 1fr 1fr 1fr;">
             @foreach($posts as $post)
                 <div class="col">
