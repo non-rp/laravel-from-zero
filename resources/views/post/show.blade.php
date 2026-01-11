@@ -10,6 +10,8 @@
         </div>
     </div>
 
+    <a href="{{route('posts.edit', $post)}}" class="back-link mb-4 btn btn-success">Edit</a>
+
     <form action="{{route('posts.destroy', $post)}}" method="post">
         @csrf
         @method('DELETE')

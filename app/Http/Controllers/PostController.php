@@ -37,20 +37,24 @@ class PostController extends Controller
         return view('post.show', compact('post'));
     }
 
+    public function edit(Post $post)
+    {
+        return view('post.edit', compact('post'));
+    }
+
     public function update(Post $post)
     {
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'image' => 'string',
+        ]);
 
-        $post->update(
-            [
-                'title' => 'My Third Post',
-                'content' => 'This is my third post content',
-                'image' => 'image.jpg',
-                'likes' => 30,
-                'is_published' => false,
-            ]
-        );
+        $post->update($data);
 
-        return view('post.show', compact('post'));
+        return redirect()
+            ->route('posts.index')
+            ->with('success', 'Post updated successfully.');
     }
 
     public function destroy(Post $post)
