@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <a href="{{route('posts.index')}}" class="back-link mb-4 d-block">Back</a>
+    <a href="{{route('posts.index')}}" class="back-link mb-4 btn btn-primary">Back</a>
 
     <div class="card mb-4" style="">
         <div class="card-body">

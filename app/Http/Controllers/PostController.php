@@ -15,7 +15,7 @@ class PostController extends Controller
     }
 
     public function create() {
-                return view('post.create');
+        return view('post.create');
     }
 
     public function store()
@@ -27,7 +27,9 @@ class PostController extends Controller
         ]);
 
         Post::create($data);
-        return redirect()->route('posts.index');
+        return redirect()
+            ->route('posts.index')
+            ->with('success', 'Post created successfully.');
     }
 
     public function show(Post $post)

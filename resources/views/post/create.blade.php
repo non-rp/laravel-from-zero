@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+    <a href="{{@route('posts.index')}}" class="btn btn-primary mb-3">Back</a>
     <form action="{{route('posts.store')}}" method="post" class="--bs-light-bg-subtle">
         @csrf
         <div class="mb-3">
