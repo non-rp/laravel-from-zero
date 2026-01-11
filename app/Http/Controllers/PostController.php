@@ -7,10 +7,12 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index(): void
+    public function index()
     {
         $posts = Post::all();
-        dump($posts);
+
+        return view('posts', compact('posts'));
+
     }
 
     public function create() {
