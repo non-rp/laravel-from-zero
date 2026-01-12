@@ -38,7 +38,7 @@ class PostController extends Controller
 
         $post = Post::create($data);
 
-        $post->tags()->attach($tags);
+        $post->tags()->sync($tags);
 
         return redirect()
             ->route('posts.index')
