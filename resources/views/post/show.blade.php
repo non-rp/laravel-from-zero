@@ -7,7 +7,13 @@
             <h5 class="card-title">{{$post->title}}</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">{{$post->image}}</h6>
             <p class="card-text">{{$post->content}}</p>
-            <p class="card-text">{{$post->category->title}}</p>
+            <p class="card-text">Category: {{$post->category->title}}</p>
+            <p class="card-text">Tags:
+                @foreach ($tags as $tag)
+                    {{$tag->title}}
+                @endforeach
+            </p>
+
         </div>
     </div>
 

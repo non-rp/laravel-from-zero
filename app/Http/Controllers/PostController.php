@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('tags')->get();;
 
         return view('post.index', compact('posts'));
     }
@@ -47,7 +47,8 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('post.show', compact('post'));
+        $tags = $post->tags;
+        return view('post.show', compact('post', 'tags'));
     }
 
     public function edit(Post $post)
@@ -64,9 +65,14 @@ class PostController extends Controller
             'content' => 'string',
             'image' => 'string',
             'category_id' => '',
+            'tags' => 'array',
         ]);
 
+        $tags = isset($data['tags']) ? $data['tags'] : [];
+        unset($data['tags']);
+
         $post->update($data);
+        $post->tags()->sync($tags);
 
         return redirect()
             ->route('posts.index')
