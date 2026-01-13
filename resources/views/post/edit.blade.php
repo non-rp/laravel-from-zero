@@ -9,15 +9,23 @@
             <label for="title" class="form-label">Title</label>
             <input type="text" name="title" class="form-control" id="title" aria-label="default input"
                    value="{{$post->title}}">
-
+            @error('title')
+                <p class="text-danger">{{$message}}</p>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
             <textarea name="content" class="form-control" id="content" rows="3">{{$post->content}}</textarea>
+            @error('content')
+                <p class="text-danger">{{$message}}</p>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Image</label>
             <input value="{{$post->image}}" type="text" name="image" class="form-control" id="image" >
+            @error('image')
+                <p class="text-danger">{{$message}}</p>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="category" class="form-label">Category</label>
