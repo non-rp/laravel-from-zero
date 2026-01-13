@@ -16,16 +16,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['namespace' => 'Post'], function () {
-    Route::get('/posts', [IndexController::class])->name('posts.index');
-    Route::get('/posts/create', [CreateController::class])->name('posts.create');
+Route::prefix('posts')->name('posts.')->group(function () {
+    Route::get('/', IndexController::class)->name('index');
+    Route::get('/create', CreateController::class)->name('create');
 
-    Route::post('/posts', [StoreController::class ])->name('posts.store');
-    Route::get('/posts/{post}', [ShowController::class ])->name('posts.show');
+    Route::post('/', StoreController::class)->name('store');
+    Route::get('/{post}', ShowController::class)->name('show');
 
-    Route::get('/posts/{post}/edit', [EditController::class ])->name('posts.edit');
-    Route::put('/posts/{post}', [UpdateController::class ])->name('posts.update');
-    Route::delete('/posts/{post}', [DestroyController::class])->name('posts.destroy');
+    Route::get('/{post}/edit', EditController::class)->name('edit');
+    Route::put('/{post}', UpdateController::class)->name('update');
+    Route::delete('/{post}', DestroyController::class)->name('destroy');
 });
 
 
