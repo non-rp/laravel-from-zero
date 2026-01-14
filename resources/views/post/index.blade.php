@@ -38,7 +38,7 @@
             @endforeach
 
             <div class="paginate">
-                {{ $posts->links() }}
+                {{ $posts->withQueryString()->links() }}
             </div>
         </div>
     </div>
