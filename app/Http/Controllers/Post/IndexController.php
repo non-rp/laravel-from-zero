@@ -9,7 +9,7 @@ class IndexController extends BaseController
 {
     public function __invoke()
     {
-        $posts = Post::with('tags')->get();;
+        $posts = Post::with('tags')->paginate(6);
         return view('post.index', compact('posts'));
     }
 }
