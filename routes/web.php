@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Post\CreateController;
@@ -29,6 +30,6 @@ Route::prefix('posts')->name('posts.')->group(function () {
 });
 
 
-Route::get('/main', [MainController::class, 'index'])->name('main.index');
+Route::get('/admin', AdminController::class)->name('admin.index');
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
