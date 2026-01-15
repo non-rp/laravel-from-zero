@@ -29,7 +29,10 @@ Route::prefix('posts')->name('posts.')->group(function () {
     Route::delete('/{post}', DestroyController::class)->name('destroy');
 });
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', AdminController::class)->name('index');
+});
 
-Route::get('/admin', AdminController::class)->name('admin.index');
+
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
