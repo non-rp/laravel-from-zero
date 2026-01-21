@@ -1,55 +1,46 @@
 @extends('layouts.admin')
 
 @section('content')
-    <a href="{{@route('posts.index')}}" class="btn btn-primary mb-3">Back</a>
-    <form action="{{route('posts.store')}}" method="post" class="--bs-light-bg-subtle">
-        @csrf
-        <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <input
-                value="{{old('title')}}"
-                type="text" name="title" class="form-control" id="title" aria-label="default input">
-            @error('title')
-            <p class="text-danger">{{$message}}</p>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">Content</label>
-            <textarea name="content" class="form-control" id="content" rows="3">{{old('content')}}</textarea>
-            @error('content')
-            <p class="text-danger">{{$message}}</p>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input
-                value="{{old('image')}}"
-                type="text" name="image" class="form-control" id="image" >
-            @error('image')
-            <p class="text-danger">{{$message}}</p>
-            @enderror
-        </div>
+    <div class="container">
 
-        <div class="mb-3">
-            <label for="category_id" class="form-label">Category</label>
-            <select class="form-select" aria-label="Default select example" name="category_id">
-                @foreach ($categories as $category)
-                    <option
-                        {{ old('category_id') == $category->id ? ' selected' : '' }}
-                        value="{{$category->id}}">{{$category->title}}</option>
-                @endforeach
-            </select>
+        @foreach (['success', 'danger', 'warning', 'info'] as $type)
+            @if (session($type))
+                <div class="alert alert-{{ $type }} alert-dismissible fade show" role="alert">
+                    {{ session($type) }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            @endif
+        @endforeach
+
+        <a href="{{route('posts.create')}}" class="btn btn-primary mb-3 mt-3">Create New Post</a>
+        <div class="d-grid align-items-center gap-3" style="grid-template-columns: 1fr 1fr 1fr;">
+            @foreach($posts as $post)
+                <div class="col">
+                    <div class="card" style="width: 100%;">
+                        <img src="" class="card-img-top" alt="{{$post->image}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{$post->title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Likes: {{$post->likes}}</h6>
+                            <p class="card-text">{{$post->content}}</p>
+                            <p class="card-text">Category: {{$post->category->title}}</p>
+                            <p class="card-text">Tags:
+                                @if ($post->tags->isNotEmpty())
+                                    @foreach ($post->tags as $tag)
+                                        {{$tag->title}}
+                                    @endforeach
+                                @else
+                                    <span class="text-muted">No tags</span>
+                                @endif
+                            </p>
+                            <a href="{{route('posts.show', $post->id)}}" class="btn btn-primary">Show post</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
+            <div class="paginate">
+                {{ $posts->withQueryString()->links() }}
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="tags" class="form-label">Tags</label>
-            <select class="form-select" multiple aria-label="Multiple select example" name="tags[]">
-                @foreach ($tags as $tag)
-                    <option
-                        {{ in_array($tag->id, old('tags', [])) ? 'selected' : '' }}
-                        value="{{$tag->id}}">{{$tag->title}}</option>
-                @endforeach
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Create</button>
-    </form>
+    </div>
 @endsection
