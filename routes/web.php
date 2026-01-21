@@ -12,10 +12,12 @@ use App\Http\Controllers\Post\ShowController;
 use App\Http\Controllers\Post\StoreController;
 use App\Http\Controllers\Post\UpdateController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Post\CreateController as AdminPostCreateController;
+use App\Http\Controllers\Admin\Post\IndexController as AdminPostIndexController;
 
 Route::get('/', function () {
     return view('main');
-});
+})->name('main.index');
 
 Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/', IndexController::class)->name('index');
@@ -31,6 +33,8 @@ Route::prefix('posts')->name('posts.')->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', AdminController::class)->name('index');
+    Route::get('/posts', AdminPostIndexController::class)->name('posts.create');
+    Route::get('/posts/create', AdminPostCreateController::class)->name('posts.create');
 });
 
 
