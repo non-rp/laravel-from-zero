@@ -13,13 +13,13 @@
             <a href="#" class="nav-link active">
                 <i class="nav-icon bi bi-speedometer"></i>
                 <p>
-                    Post
+                    Posts
                     <i class="nav-arrow bi bi-chevron-right"></i>
                 </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="./index3.html" class="nav-link active">
+                    <a href="{{ route('admin.posts.create') }}" class="nav-link active">
                         <i class="nav-icon bi bi-circle"></i>
                         <p>Add New Post</p>
                     </a>
