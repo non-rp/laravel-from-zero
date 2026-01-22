@@ -40,7 +40,7 @@
                             <td>{{ $post->id }}</td>
                             <td>{{$post->title}}</td>
                             <td>{{$post->likes}}</td>
-                            <td><span class="badge bg-warning">{{$post->category->title}}</span></td>
+                            <td><span class="badge bg-success">{{$post->category->title}}</span></td>
                             <td>
                                 @if ($post->tags->isNotEmpty())
                                     @foreach ($post->tags as $tag)
