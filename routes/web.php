@@ -33,8 +33,11 @@ Route::prefix('posts')->name('posts.')->group(function () {
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', AdminController::class)->name('index');
-    Route::get('/posts', AdminPostIndexController::class)->name('posts.create');
-    Route::get('/posts/create', AdminPostCreateController::class)->name('posts.create');
+
+    Route::prefix('posts')->name('posts.')->group(function () {
+        Route::get('/', AdminPostIndexController::class)->name('index');
+        Route::get('/create', AdminPostCreateController::class)->name('create');
+    });
 });
 
 
