@@ -11,36 +11,57 @@
                 </div>
             @endif
         @endforeach
+        <div class="card">
+            <div class="card-header" >
+                <h3 class="card-title">Posts</h3>
 
-        <a href="{{route('posts.create')}}" class="btn btn-primary mb-3 mt-3">Create New Post</a>
-        <div class="d-grid align-items-center gap-3" style="grid-template-columns: 1fr 1fr 1fr;">
-            @foreach($posts as $post)
-                <div class="col">
-                    <div class="card" style="width: 100%;">
-                        <img src="" class="card-img-top" alt="{{$post->image}}">
-                        <div class="card-body">
-                            <h5 class="card-title">{{$post->title}}</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">Likes: {{$post->likes}}</h6>
-                            <p class="card-text">{{$post->content}}</p>
-                            <p class="card-text">Category: {{$post->category->title}}</p>
-                            <p class="card-text">Tags:
+                <div class="card-tools" >
+                    <ul class="pagination pagination-sm float-right">
+                        {{ $posts->withQueryString()->links() }}
+                    </ul>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Likes</th>
+                        <th>Category</th>
+                        <th>Tags</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($posts as $post)
+                        <tr>
+                            <td>{{ $post->id }}</td>
+                            <td>{{$post->title}}</td>
+                            <td>{{$post->likes}}</td>
+                            <td><span class="badge bg-warning">{{$post->category->title}}</span></td>
+                            <td>
                                 @if ($post->tags->isNotEmpty())
                                     @foreach ($post->tags as $tag)
-                                        {{$tag->title}}
+                                        <span class="badge bg-warning">
+                                    {{$tag->title}}
+                                </span>
                                     @endforeach
                                 @else
                                     <span class="text-muted">No tags</span>
                                 @endif
-                            </p>
-                            <a href="{{route('posts.show', $post->id)}}" class="btn btn-primary">Show post</a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
-            <div class="paginate">
-                {{ $posts->withQueryString()->links() }}
+                            </td>
+                            <td>
+                                <a href="{{route('posts.show', $post->id)}}" class="btn btn-primary">Show post</a>
+                                <a href="{{route('posts.edit', $post->id)}}" class="btn btn-warning">Edit post</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
+            <!-- /.card-body -->
         </div>
     </div>
 @endsection
