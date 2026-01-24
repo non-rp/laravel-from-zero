@@ -14,7 +14,7 @@ class UpdateController extends BaseController
         $this->service->update($post, $data);
 
         return redirect()
-            ->route('posts.index')
+            ->route('admin.posts.index')
             ->with('success', 'Post updated successfully.');
     }
 }

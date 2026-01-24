@@ -8,7 +8,6 @@ use App\Http\Controllers\Admin\Post\DestroyController;
 use App\Http\Controllers\Admin\Post\EditController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Post\ShowController;
-
 use App\Http\Controllers\Admin\Post\UpdateController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Post\StoreController;
