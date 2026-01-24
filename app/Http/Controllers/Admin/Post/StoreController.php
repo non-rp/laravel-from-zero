@@ -15,7 +15,7 @@ class StoreController extends BaseController
         $this->service->store($data);
 
         return redirect()
-            ->route('posts.index')
+            ->route('admin.posts.index')
             ->with('success', 'Post created successfully.');
     }
 }

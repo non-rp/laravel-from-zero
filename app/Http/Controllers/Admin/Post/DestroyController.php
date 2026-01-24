@@ -11,7 +11,7 @@ class DestroyController extends BaseController
         $post->delete();
 
         return redirect()
-            ->route('posts.index')
+            ->route('admin.posts.index')
             ->with('success', 'Post deleted successfully.');
     }
 }

@@ -49,8 +49,7 @@ class IndexController extends BaseController
             'queryParams' => array_filter($data)
         ]);
 
-        $posts = Post::filter($filter)->paginate(6) ;
-//        $posts = Post::with('tags')->paginate(6);
+        $posts = Post::filter($filter)->paginate(20) ;
         return view('admin.post.index', compact('posts'));
     }
 }
