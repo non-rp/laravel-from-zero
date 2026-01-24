@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <a href="{{@route('posts.index')}}" class="btn btn-primary mb-3">All posts</a>
+    <a href="{{@route('admin.posts.index')}}" class="btn btn-primary mb-3">All posts</a>
     <div class="card card-primary">
         <form action="{{route('posts.store')}}" method="post" class="--bs-light-bg-subtle">
             @csrf

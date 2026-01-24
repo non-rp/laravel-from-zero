@@ -4,15 +4,15 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\Post\CreateController;
-use App\Http\Controllers\Post\DestroyController;
-use App\Http\Controllers\Post\EditController;
+use App\Http\Controllers\Admin\Post\DestroyController;
+use App\Http\Controllers\Admin\Post\EditController;
 use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Post\ShowController;
-use App\Http\Controllers\Post\StoreController;
-use App\Http\Controllers\Post\UpdateController;
+
+use App\Http\Controllers\Admin\Post\UpdateController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\Post\CreateController as AdminPostCreateController;
+use App\Http\Controllers\Admin\Post\StoreController;
+use App\Http\Controllers\Admin\Post\CreateController;
 use App\Http\Controllers\Admin\Post\IndexController as AdminPostIndexController;
 
 Route::get('/', function () {
@@ -21,14 +21,8 @@ Route::get('/', function () {
 
 Route::prefix('posts')->name('posts.')->group(function () {
     Route::get('/', IndexController::class)->name('index');
-    Route::get('/create', CreateController::class)->name('create');
-
-    Route::post('/', StoreController::class)->name('store');
     Route::get('/{post}', ShowController::class)->name('show');
 
-    Route::get('/{post}/edit', EditController::class)->name('edit');
-    Route::put('/{post}', UpdateController::class)->name('update');
-    Route::delete('/{post}', DestroyController::class)->name('destroy');
 });
 
 Route::prefix('admin')->name('admin.')->group(function () {
@@ -36,7 +30,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::prefix('posts')->name('posts.')->group(function () {
         Route::get('/', AdminPostIndexController::class)->name('index');
-        Route::get('/create', AdminPostCreateController::class)->name('create');
+        Route::get('/create', CreateController::class)->name('create');
+        Route::post('/', StoreController::class)->name('store');
+        Route::get('/{post}/edit', EditController::class)->name('edit');
+        Route::put('/{post}', UpdateController::class)->name('update');
+        Route::delete('/{post}', DestroyController::class)->name('destroy');
     });
 });
 
