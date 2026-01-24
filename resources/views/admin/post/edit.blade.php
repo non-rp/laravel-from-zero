@@ -2,10 +2,10 @@
 @section('content')
     <a href="{{@route('admin.posts.index')}}" class="btn btn-primary mb-3">All posts</a>
     <div class="card card-primary">
-        <form action="{{route('admin.posts.store')}}" method="post" class="--bs-light-bg-subtle">
+        <form action="{{route('admin.posts.update', $post)}}" method="post" class="--bs-light-bg-subtle">
             @csrf
+            @method('PUT')
             <div class="card-body">
-                @method('PUT')
                 <div class="mb-3">
                     <label for="title" class="form-label">Title</label>
                     <input type="text" name="title" class="form-control" id="title" aria-label="default input"
