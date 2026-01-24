@@ -50,9 +50,14 @@
                                 <span class="text-muted">No tags</span>
                             @endif
                         </td>
-                        <td>
+                        <td class="d-flex gap-2 justify-content-end">
                             <a href="{{route('posts.show', $post->id)}}" class="btn btn-primary">Show post</a>
                             <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-warning">Edit post</a>
+                            <form action="{{route('admin.posts.destroy', $post->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete post</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
