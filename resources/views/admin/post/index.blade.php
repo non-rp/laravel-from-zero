@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('page-title', 'Posts')
 @section('content')
     @foreach (['success', 'danger', 'warning', 'info'] as $type)
         @if (session($type))
