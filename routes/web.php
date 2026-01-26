@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Page\PageController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\Post\DestroyController;
 use App\Http\Controllers\Admin\Post\EditController;
 use App\Http\Controllers\Post\IndexController;
@@ -35,6 +35,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/{post}', UpdateController::class)->name('update');
         Route::delete('/{post}', DestroyController::class)->name('destroy');
     });
+
+    Route::resource('pages', PageController::class);
 });
 
 
