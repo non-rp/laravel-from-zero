@@ -274,7 +274,7 @@
                 {{--                <h1>AdminLte 4</h1>--}}
                 <!--end::Brand Image-->
                 <!--begin::Brand Text-->
-                <span class="brand-text fw-light">AdminLTE 4</span>
+                <span class="brand-text fw-light">VMNCH Blog</span>
                 <!--end::Brand Text-->
             </a>
             <!--end::Brand Link-->
