@@ -24,19 +24,22 @@ Route::prefix('posts')->name('posts.')->group(function () {
 
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', AdminController::class)->name('index');
+Route::prefix('admin')
+    ->middleware(['auth', 'admin'])
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', AdminController::class)->name('index');
 
-    Route::prefix('posts')->name('posts.')->group(function () {
-        Route::get('/', AdminPostIndexController::class)->name('index');
-        Route::get('/create', CreateController::class)->name('create');
-        Route::post('/', StoreController::class)->name('store');
-        Route::get('/{post}/edit', EditController::class)->name('edit');
-        Route::put('/{post}', UpdateController::class)->name('update');
-        Route::delete('/{post}', DestroyController::class)->name('destroy');
-    });
+        Route::prefix('posts')->name('posts.')->group(function () {
+            Route::get('/', AdminPostIndexController::class)->name('index');
+            Route::get('/create', CreateController::class)->name('create');
+            Route::post('/', StoreController::class)->name('store');
+            Route::get('/{post}/edit', EditController::class)->name('edit');
+            Route::put('/{post}', UpdateController::class)->name('update');
+            Route::delete('/{post}', DestroyController::class)->name('destroy');
+        });
 
-    Route::resource('pages', PageController::class);
+        Route::resource('pages', PageController::class);
 });
 
 
