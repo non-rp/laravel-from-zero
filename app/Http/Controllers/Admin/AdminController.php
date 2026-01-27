@@ -14,6 +14,8 @@ class AdminController extends Controller
 {
     public function __invoke(FilterRequest $request)
     {
+        $this->authorize('view', auth()->user());
+
         $categories = Category::all();
         $tags = Tag::all();
 
