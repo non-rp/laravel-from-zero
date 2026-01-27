@@ -33,7 +33,15 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:pages',
+            'content' => 'required|string',
+        ]);
+
+        Page::firstOrCreate($data);
+
+        return redirect()->route('admin.pages.index');
     }
 
     /**
