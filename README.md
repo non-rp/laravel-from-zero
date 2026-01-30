@@ -94,10 +94,11 @@ php artisan migrate
 php artisan migrate:fresh --seed
 ```
 
-Database migrations:
+
+Clear application caches:
 
 ```bash
-Clear application caches:
+php artisan optimize:clear
 ```
 
 Run tests (if available):
