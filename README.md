@@ -40,14 +40,93 @@ git clone https://github.com/non-rp/laravel-from-zero.git
 cd laravel-from-zero
 ```
 
-##Install backend and frontend dependencies:
+Install backend and frontend dependencies:
 
+```bash
 composer install
 npm install
+```
 
+Set up environment variables:
 
-## Set up environment variables:
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
+
+Configure your database in .env, then run migrations:
+
+```bash
+php artisan migrate
+```
+
+Start the development servers:
+
+```bash
+npm run dev
+php artisan serve
+```
+
+Open in browser:
+
+```bash
+http://127.0.0.1:8000
+```
+
+## Useful Commands
+
+Frontend development build:
+
+```bash
+npm run dev
+```
+
+Frontend production build:
+
+```bash
+npm run build
+```
+
+Database migrations:
+
+```bash
+php artisan migrate
+php artisan migrate:fresh --seed
+```
+
+Database migrations:
+
+```bash
+Clear application caches:
+```
+
+Run tests (if available):
+
+```bash
+php artisan test
+```
+
+## Project Structure
+
+- `app/` – application core (controllers, models, services)
+- `routes/` – web and API routes
+- `resources/` – Blade templates, styles, JavaScript
+- `database/` – migrations, seeders, factories
+- `public/` – public web directory
+
+## Project Goals
+
+- Learn Laravel from scratch with hands-on practice
+- Keep a clean and readable project structure
+- Track learning progress through meaningful commits
+- Use the repository as a reference for future projects and interviews
+
+## Project Status
+
+The project is actively developed as part of a learning process.  
+Each commit typically represents a completed topic or lesson.
+
+
+
+
+
